@@ -1,3 +1,6 @@
+#ifndef FILE_H
+#define FILE_H
+
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -13,9 +16,11 @@ typedef struct file
 } file_t;
 
 void afficher_file(file_t f);
-file_t* initialisation(int taille);
+file_t* initialiser_file(int taille);
 int est_file_vide(file_t f);
 int est_file_pleine(file_t f);
 int enfiler(file_t* f, int val);
 int defiler(file_t* f, int* val);
 void liberer_file(file_t* f);
+
+#endif

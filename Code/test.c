@@ -1,9 +1,10 @@
 #include "pile.h"
+#include "file.h"
 
 int main()
 {
     
-    int ok;
+    int ok;/*
     element_pile_t res;
     pile_t* p = initialiser_pile(5);
     afficher_pile(*p);
@@ -41,9 +42,43 @@ int main()
             printf("le sommet est : %d\n", res);
         }
 
-    liberer_pile(p);
+    liberer_pile(p); */
 
-    //file_t* = init
+    int res;
+    file_t* f = initialiser_file(5);
+    afficher_file(*f);
+    enfiler(f, 2);
+    afficher_file(*f);
+    enfiler(f, 3);
+    afficher_file(*f);
+    enfiler(f, 4);
+    afficher_file(*f);
+    enfiler(f, 5);
+    afficher_file(*f);
+    enfiler(f, 6);
+    afficher_file(*f);
+    enfiler(f, 7);
+    afficher_file(*f);
 
+    defiler(f, &res);
+    //printf("Les res est : %d\n", *res);
+    afficher_file(*f);
+        defiler(f, &res);
+    //printf("Les res est : %d\n", *res);
+    afficher_file(*f);
+        defiler(f, &res);
+    //printf("Les res est : %d\n", *res);
+    afficher_file(*f);
+        defiler(f, &res);
+    //printf("Les res est : %d\n", *res);
+    afficher_file(*f);
+        defiler(f, &res);
+    //printf("Les res est : %d\n", *res);
+    afficher_file(*f);
+        defiler(f, &res);
+    //printf("Les res est : %d\n", *res);
+    afficher_file(*f);
+
+    liberer_file(f);
     return 0;
 }

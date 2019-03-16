@@ -1,3 +1,6 @@
+#ifndef PILE_H
+#define PILE_H
+
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -19,3 +22,4 @@ void depiler(pile_t* p, int* ok, element_pile_t* res);
 void sommet(pile_t p, int*ok, element_pile_t* res);
 void liberer_pile(pile_t* p);
 
+#endif
