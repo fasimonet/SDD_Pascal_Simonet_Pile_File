@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define ERR_ENFILER -2
+#define ERR_DEFILER -1
+#define RAS_DEFILER 1
+#define RAS_ENFILER 2
+
 typedef int element_file_t;
 
 typedef struct file
