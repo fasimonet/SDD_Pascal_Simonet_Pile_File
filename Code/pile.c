@@ -61,6 +61,21 @@ pile_t* initialiser_pile(int n)
     return p;
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* afficher_pile                                Affiche la pile                                         */
+/*                                                                                                      */
+/* En entree: Le bloc de tete de la pile a afficher                                                     */
+/*                                                                                                      */
+/* En sortie: Aucune sortie                                                                             */
+/*                                                                                                      */
+/* Principe:                                                                                            */
+/*      Si la pile est vide                                                                             */
+/*          On affiche "La pile est vide"                                                               */
+/*      Sinon                                                                                           */
+/*          On affiche la taille de la pile se situant dans le bloc de tete                             */
+/*          On affiche le rang du sommet de la pile se situant dans le bloc de tete                     */
+/*          On affiche tous les elements de la pile                                                     */
+/* ---------------------------------------------------------------------------------------------------- */
 void afficher_pile(pile_t p)
 {
     printf("==============================================\n");
@@ -84,21 +99,67 @@ void afficher_pile(pile_t p)
     }
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* est_pile_vide                      Verifie si une pile est vide ou non                               */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*      p le bloc de tete de la pile                                                                    */
+/*                                                                                                      */
+/* En sortie:   1 si pile vide                                                                          */
+/*              0 si pile non vide                                                                      */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      On verifie si la pile contient un sommet                                                        */
+/* ---------------------------------------------------------------------------------------------------- */
 int est_pile_vide(pile_t p)
 {
     return p.rang_sommet == -1;
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* est_pile_pleine                      Verifie si une pile est vide ou non                             */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*      p le bloc de tete de la pile                                                                    */
+/*                                                                                                      */
+/* En sortie:   1 si pile pleine                                                                        */
+/*              0 si pile non pleine                                                                    */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      On verifie si le rang du sommet de la file est egal a la taille de la pile -1                   */
+/* ---------------------------------------------------------------------------------------------------- */
 int est_pile_pleine(pile_t p)
 {   
     return p.rang_sommet == p.taille-1;
 }
 
-
+// A FINIR !!!!!!!!
+/* ---------------------------------------------------------------------------------------------------- */
+/* empiler                          Empile un element                                                   */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*      p le pointeur vers bloc de tete de la pile                                                      */
+/*      val la valeur a empiler                                                                         */
+/*                                                                                                      */
+/* En sortie:   1 si pile pleine avant l'ajout de la valeur dans la pile                      */
+/*              0 si aucun probleme lors de l'ajout de la valeur dans la pile                 */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      Si la n'est pas pleine                                                                           */
+/*          On indique qu'une erreur a eu lieu lors de l'ajout                                          */
+/*      Sinon                                                                                           */
+/*          On avance le dernier element de la file d'un cran                                           */
+/*          On ajoute la valeur au rang du dernier element de la file                                   */
+/*          On incremente le nombre d'elements de la file                                               */
+/*          On indique qu'aucune erreur n'a perturbe l'ajout de la valeur dans la file                  */
+/*                                                                                                      */
+/* Lexique:                                                                                             */
+/*          ok booleen indique si l'element a pu etre enfile correctement ou non                        */
+/* ---------------------------------------------------------------------------------------------------- */
 int empiler(pile_t* p, element_pile_t val)
 {
-    int ok = !est_pile_pleine(*p);
-    if (ok)
+    int ok;
+    if (!est_pile_pleine(*p))
     {
         p->rang_sommet++;
         p->contenu[p->rang_sommet] = val;
