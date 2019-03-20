@@ -1,6 +1,22 @@
 #include "file.h"
 
 /* ---------------------------------------------------------------------------------------------------- */
+/* Nom du fichier : file.c                                                                              */
+/* Date de creation : 07/03/2019                                                                        */
+/* Auteurs : Julien PASCAL et Fabien SIMONET (G21)                                                      */
+/* Objectif : manipuler les files                                                                       */
+/* Fonctions :                                                                                          */
+/*  - initialiser_file                                                                                  */
+/*  - afficher_file                                                                                     */
+/*  - est_file_vide                                                                                     */
+/*  - rech_prec_triee_LCH                                                                               */
+/*  - adj_cell_LCH                                                                                      */
+/*  - supprimer_maillon_LCH                                                                             */
+/*  - liberer_LCH                                                                                       */
+/* ---------------------------------------------------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------------------------------------------------- */
 /* initialiser_file         Cree la file est initialise les informations dans le bloc de tete           */
 /*                                                                                                      */
 /* En entree:                                                                                           */
@@ -90,7 +106,7 @@ void afficher_file(file_t f)
     }  
 }
 
-//("bjhbb "format"hbu", ) A CHANGER (demander a Willy the boss) !!!
+
 
 /* ---------------------------------------------------------------------------------------------------- */
 /* est_file_vide                      Verifie si une file est vide ou non                               */
