@@ -1,6 +1,21 @@
 #include "pile.h"
 
 /* ---------------------------------------------------------------------------------------------------- */
+/* Nom du fichier : pile.c                                                                              */
+/* Date de creation : 07/03/2019                                                                        */
+/* Auteurs : Julien PASCAL et Fabien SIMONET (G21)                                                      */
+/* Objectif : manipuler les piles                                                                       */
+/* Fonctions :                                                                                          */
+/*  - initialiser_pile                                                                                  */
+/*  - afficher_pile                                                                                     */
+/*  - est_pile_vide                                                                                     */
+/*  - rech_prec_triee_LCH                                                                               */
+/*  - adj_cell_LCH                                                                                      */
+/*  - supprimer_maillon_LCH                                                                             */
+/*  - liberer_LCH                                                                                       */
+/* ---------------------------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------------------------- */
 /* initialiser_pile         Cree la pile est initialise les informations dans le bloc de tete           */
 /*                                                                                                      */
 /* En entree:                                                                                           */

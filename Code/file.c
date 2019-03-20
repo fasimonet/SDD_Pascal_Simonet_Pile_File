@@ -9,12 +9,11 @@
 /*  - initialiser_file                                                                                  */
 /*  - afficher_file                                                                                     */
 /*  - est_file_vide                                                                                     */
-/*  - rech_prec_triee_LCH                                                                               */
-/*  - adj_cell_LCH                                                                                      */
-/*  - supprimer_maillon_LCH                                                                             */
-/*  - liberer_LCH                                                                                       */
+/*  - est_file_pleine                                                                                   */
+/*  - enfiler                                                                                           */
+/*  - defiler                                                                                           */
+/*  - liberer_file                                                                                      */
 /* ---------------------------------------------------------------------------------------------------- */
-
 
 /* ---------------------------------------------------------------------------------------------------- */
 /* initialiser_file         Cree la file est initialise les informations dans le bloc de tete           */
