@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define FORMAT "%d"
+
 typedef int element_pile_t;
 
 typedef struct pile

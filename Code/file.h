@@ -9,6 +9,8 @@
 #define RAS_DEFILER 1
 #define RAS_ENFILER 2
 
+#define FORMAT "%d"
+
 typedef int element_file_t;
 
 typedef struct file

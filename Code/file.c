@@ -1,13 +1,34 @@
 #include "file.h"
 
-
+/* ---------------------------------------------------------------------------------------------------- */
+/* initialiser_file         Cree la file est initialise les informations dans le bloc de tete           */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*      taille la taille du tableau contenant les elements de la file                                   */
+/*                                                                                                      */
+/* En sortie: Un pointeur vers le bloc de tete de la file                                               */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      On alloue l'espace memoire du bloc de tete de la file                                           */
+/*      Si l'allocation memoire a echoue                                                                */
+/*          On affiche un message d'erreur                                                              */
+/*      Sinon                                                                                           */
+/*          On alloue l'espace memoire du tableau contenant les elements de la file                     */
+/*          Si l'allocation memoire a echoue                                                            */
+/*              On affiche un message d'erreur                                                          */
+/*              On libere le bloc de tete de la file                                                    */
+/*      Sinon                                                                                           */
+/*          On initialise la taille dans le bloc de tete                                                */
+/*          On initialise le nombre d'elements dans le bloc de tete                                     */
+/*          On initialise le rang du premier element de la file a 0 dans le bloc de tete                */
+/*          On initialise le rang du dernier element de la file a taille-1 dans le bloc de tete         */
+/* ---------------------------------------------------------------------------------------------------- */
 file_t* initialiser_file(int taille)
 {
     file_t* f = (file_t*) malloc(sizeof(file_t));
     if(f == NULL)
     {
         printf("Pb allocation file\n");
-        free(f);
     }
     else 
     {
@@ -15,7 +36,6 @@ file_t* initialiser_file(int taille)
         if(f->contenu == NULL)
         {
             printf("Pb allocation contenu file\n");
-            free(f->contenu);
             free(f);
             f = NULL;
         }
@@ -29,6 +49,19 @@ file_t* initialiser_file(int taille)
     }
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* afficher_file                                Affiche la file                                         */
+/*                                                                                                      */
+/* En entree: Le bloc de tete de la file a afficher                                                     */
+/*                                                                                                      */
+/* En sortie: Aucune sortie                                                                             */
+/*                                                                                                      */
+/* Principe:                                                                                            */
+/*      On affiche la taille de la file se situant dans le bloc de tete                                 */
+/*      On affiche le nombre d'elements de la file se situant dans le bloc de tete                      */
+/*      On affiche le rang du premier element de la file se situant dans le bloc de tete                */
+/*      On affiche le rang du dernier element de la file se situant dans le bloc de tete                */
+/* ---------------------------------------------------------------------------------------------------- */
 void afficher_file(file_t f)
 {
     int cpt = 0;
@@ -50,12 +83,14 @@ void afficher_file(file_t f)
         printf("Contenu de la file : ");
         while (cpt < f.cpt)
         {
-            printf("%d ", f.contenu[(f.rang_premier+cpt)%f.taille]);
+            printf(""FORMAT" ", f.contenu[(f.rang_premier+cpt)%f.taille]);
             cpt++;
         }
         printf("\n");
     }  
 }
+
+//("bjhbb "format"hbu", ) A CHANGER (demander a Willy the boss) !!!
 
 /* ---------------------------------------------------------------------------------------------------- */
 /* est_file_vide                      Verifie si une file est vide ou non                               */
@@ -164,7 +199,7 @@ int defiler(file_t *f, int* val)
     }
     else 
     {
-        printf("test : %d\n", f->contenu[f->rang_premier]);
+        printf("test : "FORMAT"\n", f->contenu[f->rang_premier]);
         *val = f->contenu[f->rang_premier]; 
         f->rang_premier = (f->rang_premier+1)%(f->taille);
         f->cpt--;
@@ -176,7 +211,7 @@ int defiler(file_t *f, int* val)
 /* liberer_file                                  Libere une file                                        */
 /*                                                                                                      */
 /* En entree:                                                                                           */
-/*      tete le pointeur de tete de la file a supprimer                                                         */
+/*      tete le pointeur de tete de la file a supprimer                                                 */
 /*                                                                                                      */
 /* En sortie: Aucune sortie                                                                             */
 /*                                                                                                      */

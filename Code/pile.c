@@ -1,23 +1,46 @@
 #include "pile.h"
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* initialiser_pile         Cree la pile est initialise les informations dans le bloc de tete           */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*      n la taille du tableau contenant les elements de la pile                                        */
+/*                                                                                                      */
+/* En sortie: Un pointeur vers le bloc de tete de la pile                                               */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      On alloue l'espace memoire du bloc de tete de la pile                                           */
+/*      Si l'allocation memoire a echoue                                                                */
+/*          On affiche un message d'erreur                                                              */
+/*      Sinon                                                                                           */
+/*          On alloue l'espace memoire du tableau contenant les elements de la pile                     */
+/*          Si l'allocation memoire a echoue                                                            */
+/*              On affiche un message d'erreur                                                          */
+/*              On libere le bloc de tete de la pile                                                    */
+/*      Sinon                                                                                           */
+/*          On initialise la taille dans le bloc de tete                                                */
+/*          On initialise le rang du sommet de la pile a -1 dans le bloc de tete                        */
+/* ---------------------------------------------------------------------------------------------------- */
 pile_t* initialiser_pile(int n)
 {
     pile_t* p = (pile_t*) malloc(sizeof(pile_t));
     if (p == NULL)
     {
         printf("Pb allocation pile\n");
-        free(p);
     }
     else 
     {
-        p->taille = n;
-        p->rang_sommet = -1;
         p->contenu = (element_pile_t*) malloc(sizeof(element_pile_t)*n);
         if(p->contenu == NULL)
         {
             printf("Pb allocation contenu de la pile\n");
-            free(p->contenu);
+            free(p);
             p = NULL;
+        }
+        else 
+        {
+            p->taille = n;
+            p->rang_sommet = -1;
         }
     }
     return p;
@@ -40,7 +63,7 @@ void afficher_pile(pile_t p)
 
         while (cpt <= p.rang_sommet)
         {
-            printf("%d\n", p.contenu[cpt]);
+            printf(""FORMAT"\n", p.contenu[cpt]);
             cpt++;
         }
     }

@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "truc.h"
 
 void TRUC(int i, int n, int t[])
 {
@@ -30,14 +30,4 @@ void TRUC(int i, int n, int t[])
             //printf("byebye : t[0] = %d, t[1] = %d t[2] = %d\n", t[0], t[1], t[2]);    
         }
     }
-}
-
-int main()
-{
-    int tab[3];
-    tab[0] = 1;
-    tab[1] = 2;
-    tab[2] = 3;
-    TRUC(1, 3, tab);
-    return 0;
 }
