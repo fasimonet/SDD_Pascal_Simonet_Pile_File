@@ -1,3 +1,9 @@
+/* ---------------------------------------------------------------------------------------------------- */
+/* Nom du fichier : pile.h                                                                              */
+/* Date de creation : 07/03/2019                                                                        */
+/* Auteurs : Julien PASCAL et Fabien SIMONET (G21)                                                      */
+/* Objectif : repertorier les prototypes des fonctions de manipulation de pile                          */
+/* ---------------------------------------------------------------------------------------------------- */
 #ifndef PILE_H
 #define PILE_H
 

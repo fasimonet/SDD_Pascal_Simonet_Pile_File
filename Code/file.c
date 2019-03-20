@@ -21,7 +21,7 @@
 /* En entree:                                                                                           */
 /*      taille la taille du tableau contenant les elements de la file                                   */
 /*                                                                                                      */
-/* En sortie: Un pointeur vers le bloc de tete de la file                                               */
+/* En sortie: Un pointeur sur une structure de type file                                                */
 /*                                                                                                      */
 /* Principe                                                                                             */
 /*      On alloue l'espace memoire du bloc de tete de la file                                           */
@@ -37,6 +37,9 @@
 /*          On initialise le nombre d'elements dans le bloc de tete                                     */
 /*          On initialise le rang du premier element de la file a 0 dans le bloc de tete                */
 /*          On initialise le rang du dernier element de la file a taille-1 dans le bloc de tete         */
+/*                                                                                                      */
+/* Lexique                                                                                              */
+/*      f : pointeur sur une structure de type file                                                     */
 /* ---------------------------------------------------------------------------------------------------- */
 file_t* initialiser_file(int taille)
 {
@@ -76,10 +79,13 @@ file_t* initialiser_file(int taille)
 /*      On affiche le nombre d'elements de la file se situant dans le bloc de tete                      */
 /*      On affiche le rang du premier element de la file se situant dans le bloc de tete                */
 /*      On affiche le rang du dernier element de la file se situant dans le bloc de tete                */
+/*                                                                                                      */
+/* Lexique :                                                                                            */
+/*      compt : entier servant a parcourire le tableau pour en afficher tout les elements               */
 /* ---------------------------------------------------------------------------------------------------- */
 void afficher_file(file_t f)
 {
-    int cpt = 0;
+    int compt;
     printf("==============================================\n");
     printf("\t\tAFFICHAGE DE LA FILE\n");
     printf("==============================================\n");
@@ -96,10 +102,9 @@ void afficher_file(file_t f)
     else 
     {
         printf("Contenu de la file : ");
-        while (cpt < f.cpt)
+        for (compt = 0; compt < f.cpt; compt++ )
         {
-            printf(""FORMAT" ", f.contenu[(f.rang_premier+cpt)%f.taille]);
-            cpt++;
+            printf(""FORMAT" ", f.contenu[(f.rang_premier+compt)%f.taille]);
         }
         printf("\n");
     }  
