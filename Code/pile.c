@@ -9,10 +9,11 @@
 /*  - initialiser_pile                                                                                  */
 /*  - afficher_pile                                                                                     */
 /*  - est_pile_vide                                                                                     */
-/*  - rech_prec_triee_LCH                                                                               */
-/*  - adj_cell_LCH                                                                                      */
-/*  - supprimer_maillon_LCH                                                                             */
-/*  - liberer_LCH                                                                                       */
+/*  - est_pile_pleine                                                                                   */
+/*  - empiler                                                                                           */
+/*  - depiler                                                                                           */
+/*  - sommet                                                                                            */
+/*  - liberer_pile                                                                                      */
 /* ---------------------------------------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -133,7 +134,6 @@ int est_pile_pleine(pile_t p)
     return p.rang_sommet == p.taille-1;
 }
 
-// A FINIR !!!!!!!!
 /* ---------------------------------------------------------------------------------------------------- */
 /* empiler                          Empile un element                                                   */
 /*                                                                                                      */
@@ -141,25 +141,22 @@ int est_pile_pleine(pile_t p)
 /*      p le pointeur vers bloc de tete de la pile                                                      */
 /*      val la valeur a empiler                                                                         */
 /*                                                                                                      */
-/* En sortie:   1 si pile pleine avant l'ajout de la valeur dans la pile                      */
-/*              0 si aucun probleme lors de l'ajout de la valeur dans la pile                 */
+/* En sortie:   0 si pile pleine avant l'ajout de la valeur dans la pile                                */
+/*              1 si aucun probleme lors de l'ajout de la valeur dans la pile                           */
 /*                                                                                                      */
 /* Principe                                                                                             */
-/*      Si la n'est pas pleine                                                                           */
-/*          On indique qu'une erreur a eu lieu lors de l'ajout                                          */
-/*      Sinon                                                                                           */
-/*          On avance le dernier element de la file d'un cran                                           */
-/*          On ajoute la valeur au rang du dernier element de la file                                   */
-/*          On incremente le nombre d'elements de la file                                               */
-/*          On indique qu'aucune erreur n'a perturbe l'ajout de la valeur dans la file                  */
+/*      On verifie si la pile est pleine                                                                */
+/*      Si la pile n'est pas pleine                                                                     */
+/*          On decremente le rang du sommet de la pile d'un cran                                        */
+/*          On insere l'element dans la pile                                                            */
 /*                                                                                                      */
 /* Lexique:                                                                                             */
-/*          ok booleen indique si l'element a pu etre enfile correctement ou non                        */
+/*          ok booleen indique si l'element a pu etre empile correctement ou non                        */
 /* ---------------------------------------------------------------------------------------------------- */
 int empiler(pile_t* p, element_pile_t val)
 {
-    int ok;
-    if (!est_pile_pleine(*p))
+    int ok = !est_pile_pleine(*p);
+    if (ok)
     {
         p->rang_sommet++;
         p->contenu[p->rang_sommet] = val;
@@ -167,16 +164,55 @@ int empiler(pile_t* p, element_pile_t val)
     return ok;
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* depiler                          Depile un element                                                   */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*      p le pointeur vers bloc de tete de la pile                                                      */
+/*      ok l'adresse du booleen qui indique si l'element a pu etre defile correctement ou non           */
+/*      res l'adresse de l'element depile                                                               */      
+/*                                                                                                      */
+/* En sortie:   0 si pile pleine avant l'ajout de la valeur dans la pile                                */
+/*              1 si aucun probleme lors de l'ajout de la valeur dans la pile                           */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      On verifie si la pile est vide                                                                  */
+/*      Si la n'est pas vide                                                                            */
+/*          On recupere la valeur a depiler                                                             */
+/*          On decremente le rang du sommet de la pile d'un cran                                        */
+/*                                                                                                      */
+/* Lexique:                                                                                             */
+/*          ok adresse du booleen qui indique si l'element a pu etre defile correctement ou non         */
+/* ---------------------------------------------------------------------------------------------------- */
 void depiler(pile_t* p, int* ok, element_pile_t* res)
 {
     *ok = !est_pile_vide(*p);
     if (*ok)
     {
         *res = p->contenu[p->rang_sommet];
-        p->rang_sommet--;
+        p->rang_sommet--;   
     }
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* sommet                          Donne le sommet de la pile                                           */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*      p le bloc de tete de la pile                                                                    */
+/*      ok l'adresse du booleen qui indique si le sommet a pu etre recupere ou non                      */
+/*      res l'adresse du sommet a recuperer                                                             */  
+/*                                                                                                      */
+/* En sortie:   0 si pile vide lors de la recuperation du sommet de la pile                             */
+/*              1 si aucun probleme lors de la recuperation du sommet de la pile                        */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      On verifie si la pile est vide                                                                  */
+/*      Si la pile n'est pas vide                                                                       */
+/*          On recupere le sommet de la pile                                                            */
+/*                                                                                                      */
+/* Lexique:                                                                                             */
+/*          ok adresse du booleen qui indique si le sommet a pu etre recupere ou non                    */
+/* ---------------------------------------------------------------------------------------------------- */
 void sommet(pile_t p, int* ok, element_pile_t* res)
 {
     *ok = !est_pile_vide(p);
@@ -186,8 +222,25 @@ void sommet(pile_t p, int* ok, element_pile_t* res)
     }
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* liberer_pile                                  Libere une pile                                        */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*      p le pointeur de vers le bloc de tete de la pile a supprimer                                    */
+/*                                                                                                      */
+/* En sortie: Aucune sortie                                                                             */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      Si la pile n'est pas deja liberee                                                               */
+/*          On libere le tableau contenant les elements de la pile                                      */
+/*          On libere la tete contenant les informations de la pile                                     */
+/* ---------------------------------------------------------------------------------------------------- */
 void liberer_pile(pile_t* p)
 {
-    free(p->contenu);
-    free(p);
+    if(p!=NULL)
+    {
+        free(p->contenu);
+        free(p);
+        p = NULL;
+    }
 }
