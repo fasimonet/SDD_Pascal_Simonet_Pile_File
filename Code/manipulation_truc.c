@@ -7,6 +7,7 @@ int main()
     tab[1] = 2;
     tab[2] = 3;
     TRUC(1, 3, tab);
-    //TRUC_nr(1, 3, tab);
+    printf("\n");
+    TRUC_nr(1, 3, tab);
     return 0;
 }

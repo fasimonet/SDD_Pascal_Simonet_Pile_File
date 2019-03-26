@@ -1,88 +1,136 @@
 #include "truc.h"
 #include "pile.h"
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* swap                                A remplir                                                        */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*                                                                                                      */
+/* En sortie:                                                                                           */
+/*                                                                                                      */
+/* Principe:                                                                                            */
+/* ---------------------------------------------------------------------------------------------------- */
+void swap(int t[], int i, int j)
+{
+    int temp = t[i]; 
+    t[i] = t[j];
+    t[j] = temp;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* afficher_tab                                A remplir                                                */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*                                                                                                      */
+/* En sortie:                                                                                           */
+/*                                                                                                      */
+/* Principe:                                                                                            */
+/* ---------------------------------------------------------------------------------------------------- */
+void afficher_tab(int t[], int n)
+{
+    printf("[ ");
+    for(int j=0; j<n; j++)
+    {
+        printf("%d ", t[j]);
+    }
+    printf("]\n");
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* TRUC                                A remplir                                                        */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*                                                                                                      */
+/* En sortie:                                                                                           */
+/*                                                                                                      */
+/* Principe:                                                                                            */
+/* ---------------------------------------------------------------------------------------------------- */
 void TRUC(int i, int n, int t[])
 {
-    //printf("%d %d %d\n", t[0], t[1], t[2]);
-    int temp;
-    if(i == n)
+    int il = i-1;
+    
+    if(il+1 == n)
     {
-        printf("[ ");
-        for(int j=0; j<n; j++)
-        {
-            printf("%d ", t[j]);
-        }
-        printf("]\n");
+        afficher_tab(t, n);
     }
     else 
     {
-        for(int j=i-1; j<n; j++)
+        for(int j=il; j<n; j++)
         {
-            //printf("cc : %d\n", i);
-            temp = t[i-1]; 
-            t[i-1] = t[j];
-            t[j] = temp;
-            //printf("t[0] = %d, t[1] = %d t[2] = %d\n", t[0], t[1], t[2]);
-            //printf("i = %d, n = %d\n", i, n);
+            swap(t, il, j);
             TRUC(i+1, n, t);
-            temp = t[i-1]; 
-            t[i-1] = t[j];
-            t[j] = temp;
-            //printf("byebye : t[0] = %d, t[1] = %d t[2] = %d\n", t[0], t[1], t[2]);    
+            swap(t, il, j);  
         }
     }
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* TRUC_nr                                A remplir                                                     */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*                                                                                                      */
+/* En sortie:                                                                                           */
+/*                                                                                                      */
+/* Principe:                                                                                            */
+/* ---------------------------------------------------------------------------------------------------- */
 void TRUC_nr(int i, int n, int t[])
 {
-    int ok;
+    int il = i-1;
+    int jl = il;
     int fini = 0;
-    int jl = i;
-    int il = i;
-    pile_t *p = initialiser_pile(n);
+    int reboucler = 0;
+    int ok;
+    pile_t* p = initialiser_pile(2*n);
 
-    while (!fini)
+    while(!fini)
     {
-        if(il == n)
+        if(il == n-1)
         {
-            printf("[ "); 
-            for(int k=0; k<n; k++)
+            afficher_tab(t, n);
+            if(est_pile_vide(*p))
             {
-                printf("%d ", t[k]);
-            }
-            printf("]\n");
-            if(!est_pile_vide(*p))
-            {
-                depiler(p, &ok, &il);
-                depiler(p, &ok, &jl);
+                fini = 1;
             }
             else 
             {
-                fini = 1;
+                depiler(p, &ok, &il);
+                depiler(p, &ok, &jl);
+                swap(t, il, jl);
+                jl++;
+                reboucler = 1;
             }
         }
         else 
         {
-            if(jl < n)
+            if(!reboucler)
             {
-                t[il] = t[jl];
+                jl = il;
+            }
+            
+            if (jl<n)
+            {
+                swap(t, il, jl);
                 empiler(p, jl);
                 empiler(p, il);
-                il += 1;
-                jl += 1;
+                il++;
+                reboucler = 0;
             }
             else 
             {
-               if(est_pile_vide(*p))
-               {
-                   fini = 1;
-               } 
-               else 
-               {
+                if(est_pile_vide(*p))
+                {
+                    fini = 1;
+                }
+                else 
+                {
                     depiler(p, &ok, &il);
                     depiler(p, &ok, &jl);
-               }
+                    swap(t, il, jl);
+                    jl++;
+                    reboucler = 1;
+                }
             }
         }
+    
     }
 }
