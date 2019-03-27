@@ -191,6 +191,7 @@ void enfiler(file_t* f, int *ok, int val)
 /*                                                                                                      */
 /* En entree/sortie:                                                                                    */
 /*              val le pointeur vers la valeur de l'element a supprimer                                 */
+/*                                                                                                      */
 /* Principe                                                                                             */
 /*      Si la file est vide                                                                             */
 /*          On indique qu'une erreur a eu lieu lors de la suppression                                   */

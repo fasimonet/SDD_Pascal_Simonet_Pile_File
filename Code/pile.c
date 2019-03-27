@@ -149,9 +149,6 @@ int est_pile_pleine(pile_t p)
 /*      Si la pile n'est pas pleine                                                                     */
 /*          On decremente le rang du sommet de la pile d'un cran                                        */
 /*          On insere l'element dans la pile                                                            */
-/*                                                                                                      */
-/* Lexique:                                                                                             */
-/*          ok booleen indique si l'element a pu etre empile correctement ou non                        */
 /* ---------------------------------------------------------------------------------------------------- */
 void empiler(pile_t* p, int *ok, element_pile_t val)
 {
@@ -168,20 +165,18 @@ void empiler(pile_t* p, int *ok, element_pile_t val)
 /*                                                                                                      */
 /* En entree:                                                                                           */
 /*      p le pointeur vers bloc de tete de la pile                                                      */
-/*      ok l'adresse du booleen qui indique si l'element a pu etre defile correctement ou non           */
-/*      res l'adresse de l'element depile                                                               */      
+/*      ok l'adresse du booleen qui indique si l'element a pu etre defile correctement ou non           */     
 /*                                                                                                      */
 /* En sortie:   0 si pile pleine avant l'ajout de la valeur dans la pile                                */
 /*              1 si aucun probleme lors de l'ajout de la valeur dans la pile                           */
+/*                                                                                                      */
+/* En entree-sortie:                                                                                    */
+/*      res l'adresse de l'element depile                                                               */ 
 /*                                                                                                      */
 /* Principe                                                                                             */
 /*      On verifie si la pile est vide                                                                  */
 /*      Si la n'est pas vide                                                                            */
 /*          On recupere la valeur a depiler                                                             */
-/*          On decremente le rang du sommet de la pile d'un cran                                        */
-/*                                                                                                      */
-/* Lexique:                                                                                             */
-/*          ok adresse du booleen qui indique si l'element a pu etre defile correctement ou non         */
 /* ---------------------------------------------------------------------------------------------------- */
 void depiler(pile_t* p, int* ok, element_pile_t* res)
 {
@@ -199,18 +194,17 @@ void depiler(pile_t* p, int* ok, element_pile_t* res)
 /* En entree:                                                                                           */
 /*      p le bloc de tete de la pile                                                                    */
 /*      ok l'adresse du booleen qui indique si le sommet a pu etre recupere ou non                      */
-/*      res l'adresse du sommet a recuperer                                                             */  
 /*                                                                                                      */
 /* En sortie:   0 si pile vide lors de la recuperation du sommet de la pile                             */
 /*              1 si aucun probleme lors de la recuperation du sommet de la pile                        */
+/*                                                                                                      */
+/* En entree-sortie:                                                                                    */
+/*      res l'adresse de l'element depile                                                               */ 
 /*                                                                                                      */
 /* Principe                                                                                             */
 /*      On verifie si la pile est vide                                                                  */
 /*      Si la pile n'est pas vide                                                                       */
 /*          On recupere le sommet de la pile                                                            */
-/*                                                                                                      */
-/* Lexique:                                                                                             */
-/*          ok adresse du booleen qui indique si le sommet a pu etre recupere ou non                    */
 /* ---------------------------------------------------------------------------------------------------- */
 void sommet(pile_t p, int* ok, element_pile_t* res)
 {
