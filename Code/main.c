@@ -1,6 +1,13 @@
 #include "pile.h"
 #include "file.h"
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* Nom du fichier : main.c                                                                              */
+/* Date de creation : 07/03/2019                                                                        */
+/* Auteurs : Julien PASCAL et Fabien SIMONET (G21)                                                      */
+/* Objectif : tester le bon fonctionnement des fonctions de gestions de pile et de file                 */                                                                                    */
+/* ---------------------------------------------------------------------------------------------------- */
+
 int main()
 {
     

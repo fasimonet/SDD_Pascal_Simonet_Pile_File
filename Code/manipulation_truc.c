@@ -1,5 +1,13 @@
 #include "truc.h"
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* Nom du fichier : manipulation_truc.c                                                                 */
+/* Date de creation : 13/03/2019                                                                        */
+/* Auteurs : Julien PASCAL et Fabien SIMONET (G21)                                                      */
+/* Objectif : tester le bon fonctionnement des fonctions TRUC et TRUC_nr                                */                                                                                    */
+/* ---------------------------------------------------------------------------------------------------- */
+
+
 int main()
 {
     int tab[3];
