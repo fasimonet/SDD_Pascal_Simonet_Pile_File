@@ -164,26 +164,20 @@ int est_file_pleine(file_t f)
 /*          On ajoute la valeur au rang du dernier element de la file                                   */
 /*          On incremente le nombre d'elements de la file                                               */
 /*          On indique qu'aucune erreur n'a perturbe l'ajout de la valeur dans la file                  */
-/*                                                                                                      */
-/* Lexique:                                                                                             */
-/*          ok booleen indique si l'element a pu etre enfile correctement ou non                        */
 /* ---------------------------------------------------------------------------------------------------- */
-int enfiler(file_t* f, int val)
-{
-    int ok;
-    
+void enfiler(file_t* f, int *ok, int val)
+{  
     if(est_file_pleine(*f))
     {
-        ok = ERR_ENFILER;
+        *ok = ERR_ENFILER;
     }
     else 
     {
         f->rang_dernier = (f->rang_dernier+1)%(f->taille);
         f->contenu[f->rang_dernier] = val;
         f->cpt++;
-        ok = RAS_ENFILER;
+        *ok = RAS_ENFILER;
     }
-    return ok;
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -205,17 +199,12 @@ int enfiler(file_t* f, int val)
 /*          On avance le premier element de la file d'un cran                                           */
 /*          On decremente le nombre d'elements de la file                                               */
 /*          On indique qu'aucune erreur n'a perturbe la suppression du premier element de la file       */
-/*                                                                                                      */
-/* Lexique:                                                                                             */
-/*          ok booleen indique si l'element a pu etre defile correctement ou non                        */
 /* ---------------------------------------------------------------------------------------------------- */
-int defiler(file_t *f, int* val)
+void defiler(file_t *f, int *ok, int* val)
 {
-    int ok;
-
     if(est_file_vide(*f))
     {
-        ok = ERR_DEFILER;
+        *ok = ERR_DEFILER;
     }
     else 
     {
@@ -223,9 +212,8 @@ int defiler(file_t *f, int* val)
         *val = f->contenu[f->rang_premier]; 
         f->rang_premier = (f->rang_premier+1)%(f->taille);
         f->cpt--;
-        ok = RAS_DEFILER;
+        *ok = RAS_DEFILER;
     }
-    return ok;
 }
 
 /* ---------------------------------------------------------------------------------------------------- */

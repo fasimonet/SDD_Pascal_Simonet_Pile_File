@@ -153,15 +153,14 @@ int est_pile_pleine(pile_t p)
 /* Lexique:                                                                                             */
 /*          ok booleen indique si l'element a pu etre empile correctement ou non                        */
 /* ---------------------------------------------------------------------------------------------------- */
-int empiler(pile_t* p, element_pile_t val)
+void empiler(pile_t* p, int *ok, element_pile_t val)
 {
-    int ok = !est_pile_pleine(*p);
-    if (ok)
+    *ok = !est_pile_pleine(*p);
+    if (*ok)
     {
         p->rang_sommet++;
         p->contenu[p->rang_sommet] = val;
     }
-    return ok;
 }
 
 /* ---------------------------------------------------------------------------------------------------- */

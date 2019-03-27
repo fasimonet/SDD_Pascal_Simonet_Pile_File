@@ -5,15 +5,15 @@
 /* swap                                echange les valeur de deux element du tableau                    */
 /*                                                                                                      */
 /* En entree:                                                                                           */
-/*      t un tableau                                                                                    */
-/*      i et j lesdeux indices des elements a permuter                                                  */
+/*      i et j les deux indices des elements a permuter                                                 */
 /*                                                                                                      */
-/* En sortie:                                                                                           */
+/* En entree / sortie:                                                                                  */
+/*      t un tableau                                                                                    */
 /*                                                                                                      */
 /* Principe:                                                                                            */
-/*      on defini une variable temporaire                                                               */
+/*      on definit une variable temporaire                                                              */
 /*      on memorise grace a cette variable la valeur de la premiere variable                            */
-/*      on modifie la premiere variable en la mettant egal a la deuxieme                                */
+/*      on modifie la premiere variable en la mettant egale a la deuxieme                               */
 /*      on recupere la premiere valeur dans la variable temporaire que l'on met dans la deuxieme        */
 /*      variable                                                                                        */
 /* ---------------------------------------------------------------------------------------------------- */
@@ -31,7 +31,7 @@ void swap(int t[], int i, int j)
 /*      t un tableau                                                                                    */
 /*      n sa taille                                                                                     */
 /*                                                                                                      */
-/* En sortie:                                                                                           */
+/* En sortie: Aucune sortie                                                                             */
 /*                                                                                                      */
 /* Principe:                                                                                            */
 /*      pour j allant de 0 a n-1                                                                        */
@@ -47,6 +47,24 @@ void afficher_tab(int t[], int n)
     printf("]\n");
 }
 
+void test_de_fin(pile_t** p, int t[], int* reboucler, int* fini, int *ok, int *il, int* jl)
+{
+    if(est_pile_vide(**p))
+    {
+        *fini = 1;
+    }
+    else 
+    {
+        depiler(*p, ok, il);
+        depiler(*p, ok, jl);
+       // printf("jl : %d, il : %d\n", *jl, *il);
+        swap(t, *il, *jl);
+        (*jl)++;
+        *reboucler = 1;
+    }
+}
+
+
 /* ---------------------------------------------------------------------------------------------------- */
 /* TRUC                                ecrit l'ensemble des permutation possible du tableau t           */
 /*                                                                                                      */
@@ -55,16 +73,16 @@ void afficher_tab(int t[], int n)
 /*      n sa taille                                                                                     */
 /*      i un indice de depart                                                                           */
 /*                                                                                                      */
-/* En sortie:                                                                                           */
+/* En sortie: Aucune sortie                                                                             */
 /*                                                                                                      */
 /* Principe:                                                                                            */
 /*      si i = n alors                                                                                  */
 /*          on affiche le tableau                                                                       */
 /*      sinon                                                                                           */
 /*          pour j allant de i a n                                                                      */
-/*              echanger les element d'indice i et j                                                    */
+/*              echanger les elements d'indice i et j                                                   */
 /*              appeler la fonction TRUC avec i+1 n et t                                                */
-/*              echanger les element d'indice i et j                                                    */
+/*              echanger les elements d'indice i et j                                                   */
 /* ---------------------------------------------------------------------------------------------------- */
 void TRUC(int i, int n, int t[])
 {
@@ -94,23 +112,23 @@ void TRUC(int i, int n, int t[])
 /*      n sa taille                                                                                     */
 /*      i un indice de depart                                                                           */
 /*                                                                                                      */
-/* En sortie:                                                                                           */
+/* En sortie: Aucune sortie                                                                             */
 /*                                                                                                      */
 /* Principe:                                                                                            */
-/*      on initialise les variables locales il et jl en les mettant egale a i                           */
+/*      on initialise les variables locales il et jl en les mettant egales a i                          */
 /*      on initialise le booleen d'arret a faux                                                         */
-/*      on initialise le bolleen de retour de boucle a faux                                             */
+/*      on initialise le booleen de retour de boucle a faux                                             */
 /*      on cree une pile                                                                                */
 /*      tant que le booleen d'arret est faux                                                            */
 /*          si il=n alors                                                                               */
 /*              on affiche le tableau                                                                   */
 /*              si la pile est vide alors                                                               */
-/*                  on met le booleen de fin a vrais                                                    */
+/*                  on met le booleen de fin a vrai                                                     */
 /*              sinon                                                                                   */
 /*                  on depile les element il et jl                                                      */
 /*                  on echange les elements d'indice il et jl                                           */
 /*                  on incremente jl                                                                    */
-/*                  on met le booleen de retour de boucle a vrais                                       */
+/*                  on met le booleen de retour de boucle a vrai                                        */
 /*          sinon                                                                                       */
 /*              si le booleen de retour de boucle est faux alors                                        */
 /*                  on met jl egal il                                                                   */
@@ -121,39 +139,28 @@ void TRUC(int i, int n, int t[])
 /*                  on met le booleen de retour de boucle a faux                                        */
 /*              sinon                                                                                   */
 /*                  si la pile est vide alors                                                           */
-/*                  on met le booleen de fin a vrais                                                    */
+/*                  on met le booleen de fin a vrai                                                     */
 /*              sinon                                                                                   */
-/*                  on depile les element il et jl                                                      */
+/*                  on depile les elements il et jl                                                     */
 /*                  on echange les elements d'indice il et jl                                           */
 /*                  on incremente jl                                                                    */
-/*                  on met le booleen de retour de boucle a vrais                                       */
+/*                  on met le booleen de retour de boucle a vrai                                        */
 /* ---------------------------------------------------------------------------------------------------- */
 void TRUC_nr(int i, int n, int t[])
 {
-    int il = i-1; // les indices vont de 0 a n-1
-    int jl = il;
-    int fini = 0;
-    int reboucler = 0;
-    int ok;
-    pile_t* p = initialiser_pile(2*n);
+    int         il = i-1; // les indices vont de 0 a n-1
+    int         jl = il;
+    int         fini = 0;
+    int         reboucler = 0;
+    int         ok;
+    pile_t    * p = initialiser_pile(2*n);
 
     while(!fini)
     {
         if(il == n-1)
-        {
+        {   
             afficher_tab(t, n);
-            if(est_pile_vide(*p))
-            {
-                fini = 1;
-            }
-            else 
-            {
-                depiler(p, &ok, &il);
-                depiler(p, &ok, &jl);
-                swap(t, il, jl);
-                jl++;
-                reboucler = 1;
-            }
+            test_de_fin(&p, t, &reboucler, &fini, &ok, &il, &jl);
         }
         else 
         {
@@ -165,25 +172,14 @@ void TRUC_nr(int i, int n, int t[])
             if (jl<n)
             {
                 swap(t, il, jl);
-                empiler(p, jl);
-                empiler(p, il);
+                empiler(p, &ok, jl);
+                empiler(p, &ok, il);
                 il++;
                 reboucler = 0;
             }
             else 
             {
-                if(est_pile_vide(*p))
-                {
-                    fini = 1;
-                }
-                else 
-                {
-                    depiler(p, &ok, &il);
-                    depiler(p, &ok, &jl);
-                    swap(t, il, jl);
-                    jl++;
-                    reboucler = 1;
-                }
+                test_de_fin(&p, t, &reboucler, &fini, &ok, &il, &jl);
             }
         }
     
